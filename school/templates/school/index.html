@@ -1,3 +1,47 @@
 {% extends 'school/base.html' %}
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h3>Schools</h3>
+        </div>
+        <br>
+        <div class="col s12">
+            <table class="centered">
+                <thead>
+                    <tr>
+                        <th>Block</th>
+                        <th>Cluster</th>
+                        <th>School ID</th>
+                        <th>School Name</th>
+                        <th>Category</th>
+                        <th>Gender</th>
+                        <th>Medium</th>
+                        <th>Address</th>
+                        <th>Area</th>
+                        <th>Pincode</th>
+                        <th>Landmark</th>
+                        <th>Bus Routes</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: schoolList">
+                    <tr>
+                        <td data-bind="text: block"></td>
+                        <td data-bind="text: cluster"></td>
+                        <td data-bind="text: schoolid"></td>
+                        <td data-bind="text: schoolname"></td>
+                        <td data-bind="text: category"></td>
+                        <td data-bind="text: gender"></td>
+                        <td data-bind="text: medium_of_inst"></td>
+                        <td data-bind="text: address"></td>
+                        <td data-bind="text: area"></td>
+                        <td data-bind="text: pincode"></td>
+                        <td data-bind="text: landmark"></td>
+                        <td data-bind="text: busroutes"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
