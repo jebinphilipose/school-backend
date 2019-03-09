@@ -5,6 +5,12 @@
         <div class="col s12">
             <h3>Schools</h3>
         </div>
+        <div class="col s12">
+            <div class="input-field inline">
+                <input id="searchBox" type="text" data-bind="textInput: search">
+                <label for="searchBox">Search</label>
+            </div>
+        </div>
         <br>
         <div class="col s12">
             <table class="centered">
@@ -24,7 +30,7 @@
                         <th>Bus Routes</th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: schoolList">
+                <tbody data-bind="foreach: searchedSchools">
                     <tr>
                         <td data-bind="text: block"></td>
                         <td data-bind="text: cluster"></td>

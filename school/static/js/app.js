@@ -23,7 +23,18 @@ var School = function (data) {
 // ViewModel
 var ViewModel = function () {
     var self = this;
+    this.search = ko.observable("");
     this.schoolList = ko.observableArray();
+    this.searchedSchools = ko.computed(function () {
+        var search = self.search().toLowerCase();
+        if (!search) {
+            return self.schoolList();
+        } else {
+            return ko.utils.arrayFilter(self.schoolList(), function (school) {
+                return school.schoolname().toLowerCase().indexOf(search) >= 0 || school.address().toLowerCase().indexOf(search) >= 0 || school.area().toLowerCase().indexOf(search) >= 0 || school.pincode().toLowerCase().indexOf(search) >= 0 || school.landmark().toLowerCase().indexOf(search) >= 0;
+            });
+        }
+    }, this);
 
     $.ajax({
         url: '/api/v1/schools/',
