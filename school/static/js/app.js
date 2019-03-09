@@ -24,6 +24,9 @@ var School = function (data) {
 var ViewModel = function () {
     var self = this;
     this.search = ko.observable("");
+    this.ndir = ko.observable(-1);
+    this.pdir = ko.observable(-1);
+    this.mdir = ko.observable(-1);
     this.schoolList = ko.observableArray();
     this.searchedSchools = ko.computed(function () {
         var search = self.search().toLowerCase();
@@ -35,6 +38,33 @@ var ViewModel = function () {
             });
         }
     }, this);
+
+    this.sortByName = function () {
+        self.ndir(self.ndir() * -1);
+        self.pdir(-1);
+        self.mdir(-1);
+        self.schoolList.sort(function (a, b) {
+            return self.ndir() * (a.schoolname() < b.schoolname() ? -1 : (a.schoolname() > b.schoolname() ? 1 : 0));
+        });
+    };
+
+    this.sortByPin = function () {
+        self.pdir(self.pdir() * -1);
+        self.ndir(-1);
+        self.mdir(-1);
+        self.schoolList.sort(function (a, b) {
+            return self.pdir() * (a.pincode() < b.pincode() ? -1 : (a.pincode() > b.pincode() ? 1 : 0));
+        });
+    };
+
+    this.sortByMedium = function () {
+        self.mdir(self.mdir() * -1);
+        self.ndir(-1);
+        self.pdir(-1);
+        self.schoolList.sort(function (a, b) {
+            return self.mdir() * (a.medium_of_inst() < b.medium_of_inst() ? -1 : (a.medium_of_inst() > b.medium_of_inst() ? 1 : 0));
+        });
+    };
 
     $.ajax({
         url: '/api/v1/schools/',
